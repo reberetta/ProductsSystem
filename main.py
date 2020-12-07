@@ -1,0 +1,3 @@
+import Product
+
+p = Product()
