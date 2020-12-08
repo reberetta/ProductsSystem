@@ -26,6 +26,8 @@ class Product:
         return self.__price
 
     def set_price(self, price):
+        while(price <= 0):
+            price = float(input("Price should be greater than 0! Enter again please: "))
         self.__price = price
 
     def print(self):
