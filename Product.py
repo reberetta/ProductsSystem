@@ -4,6 +4,9 @@ class Product:
     __description: str
     __price: float
     __weight: float
+    __length: float
+    __width: float
+    __height: float
 
 
     def __init__(self, name):
@@ -39,13 +42,39 @@ class Product:
             weight = float(input("Weight should be greater than 0! Enter again please: "))
         self.__weight = weight
 
+    def get_length(self) -> float:
+        return self.__length
+
+    def set_length(self, length):
+        while (length <= 0):
+            length = float(input("Length should be greater than 0! Enter again please: "))
+        self.__length = length
+
+    def get_width(self) -> float:
+        return self.__width
+
+    def set_width(self, width):
+        while (width <= 0):
+            width = float(input("Width should be greater than 0! Enter again please: "))
+        self.__width = width
+
+    def get_height(self) -> float:
+        return self.__height
+
+    def set_height(self, height):
+        while (height <= 0):
+            height = float(input("Height should be greater than 0! Enter again please: "))
+        self.__height = height
+
 
     def print(self):
         print("Name: " + self.__name)
         print("Description: " + self.__description)
         print("Price: " + str(self.__price))
         print("Weight: " + str(self.__weight))
-
+        print("Length: " + str(self.__length))
+        print("Width: " + str(self.__width))
+        print("Height: " + str(self.__height))
 
 
 
@@ -71,11 +100,17 @@ def add_new_product() -> Product:
     description = input("Now a brief description: ")
     price = float(input("And its price: "))
     weight = float(input("Its weight (g):"))
+    length = float(input("Its length (g):"))
+    width = float(input("Its width (g):"))
+    height = float(input("Its height (g):"))
 
     p = Product(name)
     p.set_description(description)
     p.set_price(price)
     p.set_weight(weight)
+    p.set_length(length)
+    p.set_width(width)
+    p.set_height(height)
     return p
 
 
@@ -111,6 +146,18 @@ def update_product(products_list):
         print("Current weight: " + str(p.get_weight()))
         weight = float(input("New weight: "))
         p.set_weight(weight)
+        print()
+        print("Current length: " + str(p.get_length()))
+        length = float(input("New length: "))
+        p.set_length(length)
+        print()
+        print("Current width: " + str(p.get_width()))
+        width = float(input("New width: "))
+        p.set_width(width)
+        print()
+        print("Current height: " + str(p.get_height()))
+        height = float(input("New height: "))
+        p.set_height(height)
         print("Product successfully updated!")
 
 
