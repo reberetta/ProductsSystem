@@ -1,12 +1,12 @@
 class Product:
+    __id: int
     __name: str
     __description: str
     __price: float
 
-    def __init__(self, name, description, price):
+
+    def __init__(self, name):
         self.__name = name
-        self.__description = description
-        self.__price = price
 
     def get_name(self) -> str:
         return self.__name
@@ -18,6 +18,8 @@ class Product:
         return self.__description
 
     def set_description(self, description: str):
+        while(len(description) < 20):
+            description = input("Description too short! Minimum of 20 characters needed: ")
         self.__description = description
 
     def get_price(self) -> float:
@@ -30,6 +32,8 @@ class Product:
         print("Name: " + self.__name)
         print("Description: " + self.__description)
         print("Price: " + str(self.__price))
+
+
 
 
 def show_menu() -> int:
@@ -54,7 +58,9 @@ def add_new_product() -> Product:
     description = input("Now a brief description: ")
     price = float(input("And its price: "))
 
-    p = Product(name, description, price)
+    p = Product(name)
+    p.set_description(description)
+    p.set_price(price)
     return p
 
 
