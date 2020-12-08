@@ -1,5 +1,57 @@
+import csv
+
+class Category:
+    __name: str
+
+    def __init__(self, name):
+        self.__name = name
+
+    def get_name(self) -> str:
+        return self.__name
+
+    def set_name(self, name: str):
+        self.__name = name
+
+
+def add_categories(categories_set):
+    # Reading input categories filename
+    #file = input('Enter file name (Expects a csv file, using  comma as separator): ')
+    file = 'categories.csv'
+    # Extracting categories from file
+    with open(file, newline='') as csvfile:
+        reader = list(csv.reader(csvfile, delimiter=","))
+        reader.pop(0)  # removing row name
+
+    # Insert categories into db table IF is UNIQUE
+    for row in reader:
+        categories_set.add(row[0])
+
+def print_categories(categories_set):
+    for cat in categories_set:
+        print(cat)
+
+class SubCategory:
+    __name: str
+    __father: Category
+
+    def __init__(self, name, father):
+        self.__name = name
+        self.__father = father
+
+    def get_name(self) -> str:
+        return self.__name
+
+    def set_name(self, name: str):
+        self.__name = name
+
+    def get_father(self) -> str:
+        return self.__father
+
+    def set_father(self, father: Category):
+        self.__father = father
+
+
 class Product:
-    __id: int
     __name: str
     __description: str
     __price: float
@@ -7,6 +59,7 @@ class Product:
     __length: float
     __width: float
     __height: float
+    __categories: list
 
 
     def __init__(self, name):
@@ -172,8 +225,14 @@ def delete_product(products_list):
         products_list.remove(p)
 
 
+
+
 option = -1
 products_list = list()
+categories_set = set()
+subcategories_set = set()
+
+add_categories(categories_set)
 
 while option != 0:
     option = show_menu()
