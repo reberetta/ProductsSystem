@@ -3,6 +3,7 @@ class Product:
     __name: str
     __description: str
     __price: float
+    __weight: float
 
 
     def __init__(self, name):
@@ -30,10 +31,20 @@ class Product:
             price = float(input("Price should be greater than 0! Enter again please: "))
         self.__price = price
 
+    def get_weight(self) -> float:
+        return self.__weight
+
+    def set_weight(self, weight):
+        while(weight <= 0):
+            weight = float(input("Weight should be greater than 0! Enter again please: "))
+        self.__weight = weight
+
+
     def print(self):
         print("Name: " + self.__name)
         print("Description: " + self.__description)
         print("Price: " + str(self.__price))
+        print("Weight: " + str(self.__weight))
 
 
 
@@ -59,10 +70,12 @@ def add_new_product() -> Product:
     name = input("Tell me its name: ")
     description = input("Now a brief description: ")
     price = float(input("And its price: "))
+    weight = float(input("Its weight (g):"))
 
     p = Product(name)
     p.set_description(description)
     p.set_price(price)
+    p.set_weight(weight)
     return p
 
 
@@ -92,8 +105,12 @@ def update_product(products_list):
         p.set_description(description)
         print()
         print("Current price: " + str(p.get_price()))
-        price = input("New price: ")
+        price = float(input("New price: "))
         p.set_price(price)
+        print()
+        print("Current weight: " + str(p.get_weight()))
+        weight = float(input("New weight: "))
+        p.set_weight(weight)
         print("Product successfully updated!")
 
 
